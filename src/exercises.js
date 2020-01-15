@@ -2,6 +2,9 @@ function commonEnd(a, b) {
   if (!a || a.length === 0 || !b || b.length === 0) {
     return false;
   }
+  if(a.length > 1 || b.length > 1 ){
+    return true;
+  }
 
   // write your code here
 }
