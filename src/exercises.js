@@ -2,15 +2,25 @@ function commonEnd(a, b) {
   if (!a || a.length === 0 || !b || b.length === 0) {
     return false;
   }
-  if(a.length > 1 || b.length > 1 ){
-    return true;
+  if(a.length < 1 || b.length < 1){
+    return false;
   }
-
-  // write your code here
+  if (a === undefined || b === undefined){
+    return undefined;
+  }
+  if(a[0] == b[0] || a[a.length - 1] == b[b.length -1]){
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function endsMeet(values, n) {
-  // write your code here
+  if ( values === null || values === undefined || values.length < n || Number.isInteger(n)){
+    return [];
+  }
+  
+
 }
 
 function difference(numbers) {
