@@ -18,23 +18,27 @@ function commonEnd(a, b) {
 function endsMeet(values, n) {
   let array = [];
 
-  if (!values || values.length < n || !Number.isInteger(n) || n < 0) {
+  if (!values || values.length < n || n <= 0 || !Number.isInteger(n)) {
     return array;
   } else {
-    if (n === 0) {
-      return values;
-    }
-
-      for (let i = 0; i < n; i++) {
-          array.push(values[i]);
+      if (n === 0) {
+        return values;
+      } else {
+        for (let y = 0; y < n; y++) {
+          if (!(values[y] === undefined)) {
+            array.push(values[y]);
+          }
+        }
+        for (let y = n; y > 0; y--) {
+          if (!(values[values.length - y] === undefined)) {
+            array.push(values[values.length - y]);
+          }
+        }
+        return array;
       }
-
-      for (let i = n; i > 0; i--) {
-          array.push(values[values.length - i]);
-      }
-      return array;
-    }
+   }
 }
+
 
 function difference(numbers) {
   if (numbers == undefined||numbers < 1||numbers.some(isNaN)) {
@@ -70,28 +74,113 @@ function middle(values) {
 }
 
 function increasing(numbers) {
-if (numbers === undefined || numbers === null || numbers.length < 3 || numbers.some(isNaN) || !Number.isInteger())
-  return false;
+if (numbers === undefined || numbers === null || numbers.length < 3 || numbers.some(isNaN) ||Number.isInteger()){
+  return undefined;
 } else {
-
+    for (i = 0; i < numbers.length; i++){
+      if((numbers[i] + 1) == numbers[i + 1] && (numbers[i+ 1] + 1) == numbers[i + 2]){
+        return true;
+        break;
+    }
+  }
+  return false;
+}
 }
 
 function everywhere(values, x) {
-  // write your code here
+ if (values === undefined || values === null || values.length < 1 || x === undefined){
+   return false;
+ } else {
+   for (let i = 0; i < values.length; i++) {
+     if (values[i] !== x) {
+       if (values[i - 1] === x || values[i + 1] === x) {
+          nums = false;
+       } else {
+         return false;
+       }
+     }
+   }
+ }
+ return true;
 }
+
 
 function consecutive(numbers) {
-  // write your code here
+
+   if (!numbers || numbers.length < 3 || numbers.some(isNaN) || numbers.some(Number.isInteger) === false) {
+    return false;
+  } else {
+    for (let i = 0; i < numbers.length - 1; i++) {
+      if (numbers[i] % 2 === 0 && numbers[i + 1] % 2 === 0 && numbers[i + 2] % 2 === 0) {
+        return true;
+        break;
+      } else if (numbers[i] % 2 !== 0 && numbers[i + 1] % 2 !== 0 && numbers[i + 2] % 2 !== 0) {
+        return true;
+        break;
+      }
+    }
+    return false;
+  }
 }
 
+
 function balance(numbers) {
-  // write your code here
-  console.log("test");
+  let sumHalf;
+  let sumTwo = 0;
+  let sum;
+  let sumOne = 0;
+
+  if (!numbers || numbers.length < 2 || numbers.some(isNaN)) {
+      return false;
+      sum = false;
+      } else {
+      for (let x = 0; x < numbers.length - 1; x++) {
+          if (Number.isInteger(numbers[x]) === false){
+              return false;
+              sum = false;
+          }
+      }
+      for (let i = 0; i < numbers.length; i++){
+          sumOne += numbers[i];
+        }
+      sumHalf = sumOne / 2;
+      if(sumOne % 2 === 1) {
+          return false;
+          sum = false;
+      }
+      for (let y = 0; y < numbers.length - 1; y++) {
+          sumTwo += numbers[y];
+          if (sumTwo === sumHalf) {
+              return true;
+              sum = true;
+          }
+      }
+      if (sum === true) {
+          return true;
+      } else {
+          return false;
+      }
+  }
 }
 
 function clumps(values) {
-  // write your code here
-}
+  if (!values) {
+     return -1;
+   } else {
+     let count = 0;
+     let clump = null;
+     for (i = values.length - 1; i >= 0; i--){
+       if (values[i] === values[i - 1] && values[i] !== clump){
+         count++;
+         clump = values[i];
+       } else if (clump !== values[i]){
+         clump = null;
+       }
+     }
+     return count;
+   }
+ }
+
 
 /*
  * Exports all functions for use in external grader.js file. Do not modify.
